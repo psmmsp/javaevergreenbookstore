@@ -1,0 +1,25 @@
+package com.bookstore.dao;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+
+import org.junit.BeforeClass;
+
+public class BaseDAOTest {
+	protected static EntityManagerFactory entityManagerFactory;
+	protected static EntityManager entityManager;
+	
+	
+	public static void setUpBeforeClass() throws Exception{
+		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
+		entityManager = entityManagerFactory.createEntityManager();
+	}
+	
+	public static void tearDownAfterClass() throws Exception{
+		entityManager.close();
+		entityManagerFactory.close();
+	}
+
+}
